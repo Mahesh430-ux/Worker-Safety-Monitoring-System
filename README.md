@@ -90,3 +90,9 @@ Phase 13 → GitHub Actions CI/CD
 Next: **Phase 2 → Camera integration and real-time video processing with OpenCV.**
 
 Building this step by step with a focus on **AI + Computer Vision + Cloud + DevOps**.
+
+
+
+
+
+.\venv\Scripts\python.exe -c "from ultralytics import YOLO; m=YOLO('yolo26n.pt'); m.train(data='data.yaml', epochs=1, imgsz=640, batch=4, device='cpu')"
