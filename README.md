@@ -96,3 +96,32 @@ Building this step by step with a focus on **AI + Computer Vision + Cloud + DevO
 
 
 .\venv\Scripts\python.exe -c "from ultralytics import YOLO; m=YOLO('yolo26n.pt'); m.train(data='data.yaml', epochs=1, imgsz=640, batch=4, device='cpu')"
+
+
+
+
+Day 3:- 
+Added 4 new slides
+Today's Project Work → GitHub
+PPE/safety detection model training
+Flask/backend debugging
+Dependency checking
+GitHub Version of Today's Work
+git status
+git add
+git commit
+git pull
+git push
+Recommended GitHub Project Structure
+camera/
+routes/
+models/
+templates/
+static/
+requirements.txt
+README.md
+.gitignore
+README: Show What You Built Today
+Today's progress
+Tech stack
+Next steps
