@@ -263,3 +263,81 @@ Next, I will focus on:
 > **"Detect the risk before it becomes an accident."**
 
 This project aims to create an intelligent industrial safety monitoring system capable of continuously monitoring workers, detecting PPE violations, generating alerts, and providing administrators with real-time safety information.
+
+
+🚧 Worker Safety Monitoring System — Day 5
+📅 Day 5 Progress
+
+Today I focused on improving the PPE verification architecture and planning the system for deployment across multiple construction-site zones.
+
+✅ Work Completed
+Designed a false-alarm elimination strategy for PPE detection.
+Planned systematic testing for:
+Helmet / No Helmet
+Vest / No Vest
+Gloves / No Gloves
+Goggles / No Goggles
+Boots / No Boots
+Planned testing under:
+Different lighting conditions
+Different camera angles
+Multiple workers
+Different helmet colors
+Partially blocked workers
+Designed a 4-zone monitoring architecture.
+Decided to use one centralized database instead of separate databases for each zone.
+Planned zone-specific PPE requirements using a Safety Rule Engine.
+Separated AI detection from zone safety rules.
+Planned temporal verification so that a single incorrect frame does not immediately trigger the alarm.
+Planned future support for IP/RTSP construction-site cameras instead of relying only on the laptop webcam.
+Designed the future workflow:
+Camera
+   ↓
+Person Detection
+   ↓
+PPE Detection
+   ↓
+Zone Detection
+   ↓
+Zone PPE Rules
+   ↓
+Temporal Verification
+   ↓
+Safety Decision
+   ↓
+Database + Dashboard + Alarm
+🧪 Planned Testing Strategy
+
+The PPE model will be tested in phases:
+
+Phase 1: Basic PPE verification
+Phase 2: False-positive testing
+Phase 3: Lighting & camera-angle testing
+Phase 4: Multiple-worker testing
+Phase 5: Four-zone safety-rule implementation
+Phase 6: Live construction-site camera integration
+
+🏗️ Planned Zones
+
+The system architecture will support four different site zones, for example:
+
+Zone 1 → Chemical Zone
+Zone 2 → Construction Zone
+Zone 3 → Specialized Zone
+Zone 4 → General Zone
+
+Each zone can have its own required PPE configuration.
+
+💡 Key Design Decision
+
+Instead of creating a separate AI model/database for every zone:
+
+One AI model + One centralized database + Zone-specific safety rules
+
+This makes the system easier to maintain and allows the admin to modify PPE requirements without retraining the entire model.
+
+🚀 Next Steps — Day 6
+
+Tomorrow I will start with Phase 1: PPE Verification & False Alarm Testing.
+
+The first goal will be to test the current YOLO model systematically and identify where false detections occur before implementing the four-zone system.
