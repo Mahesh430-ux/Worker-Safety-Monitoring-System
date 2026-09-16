@@ -341,3 +341,158 @@ This makes the system easier to maintain and allows the admin to modify PPE requ
 Tomorrow I will start with Phase 1: PPE Verification & False Alarm Testing.
 
 The first goal will be to test the current YOLO model systematically and identify where false detections occur before implementing the four-zone system.
+
+
+
+
+# Day 6 — PPE Dataset Cleaning & Visual Annotation Audit
+
+## 📅 Progress Update
+
+Today I focused on improving the quality and reliability of the PPE detection dataset before starting the next YOLO training cycle.
+
+The goal was to reduce incorrect annotations and improve the model's ability to distinguish between compliant and non-compliant safety equipment.
+
+---
+
+## 🔍 1. Dataset Structure Validation
+
+The complete PPE dataset was inspected across:
+
+- Training dataset
+- Validation dataset
+- Testing dataset
+
+Total label files checked:
+
+**5,140**
+
+Total annotations:
+
+**21,584**
+
+Dataset structure verification confirmed:
+
+- No malformed annotation files
+- No empty label files
+- No images without labels
+- No labels without corresponding images
+
+The dataset structure and YOLO annotation format are now valid.
+
+---
+
+## 🛠️ 2. Segmentation Annotation Cleanup
+
+During the initial annotation validation, 54 polygon/segmentation annotations were identified.
+
+These annotations were converted into YOLO detection-format bounding boxes.
+
+Conversion result:
+
+- Normal detection annotations retained: 21,531
+- Polygon annotations converted: 54
+- Conversion errors: 0
+
+All identified polygon annotations were successfully converted.
+
+---
+
+## 👷 3. PPE Class Distribution Audit
+
+The dataset currently contains 10 PPE-related classes:
+
+| ID | Class | Annotations |
+|---:|---|---:|
+| 0 | boots | 4,601 |
+| 1 | gloves | 1,549 |
+| 2 | goggles | 588 |
+| 3 | helmet | 5,892 |
+| 4 | no-boots | 163 |
+| 5 | no-gloves | 334 |
+| 6 | no-goggles | 843 |
+| 7 | no-helmet | 598 |
+| 8 | no-vest | 1,175 |
+| 9 | vest | 5,841 |
+
+This audit also revealed that some violation classes have significantly fewer samples than their corresponding compliant classes.
+
+---
+
+## 🪖 4. Helmet Annotation Visual Audit
+
+A visual audit was performed for helmet annotations.
+
+The audit identified suspiciously large helmet bounding boxes for manual inspection.
+
+Instead of automatically deleting these annotations, preview images were generated so that each annotation could be visually verified.
+
+This helped distinguish between:
+
+- Correct large bounding boxes
+- Incorrect bounding boxes
+- Objects occupying a large portion of the image
+- Possible annotation mistakes
+
+The audit showed that bounding-box size alone should not be used to remove an annotation.
+
+---
+
+## 🚨 5. No-Helmet Dataset Audit
+
+The `no-helmet` class was specifically audited.
+
+Total:
+
+**598 no-helmet annotations**
+
+Visual inspection was started to verify whether the bounding boxes correctly represented workers without helmets.
+
+This is particularly important because `no-helmet` is one of the critical classes responsible for triggering the safety alarm.
+
+---
+
+## 🦺 6. No-Vest Dataset Audit
+
+The `no-vest` class was also audited.
+
+Total:
+
+**1,175 no-vest annotations**
+
+A suspicious-box scan identified:
+
+**131 potentially large no-vest bounding boxes**
+
+These were not automatically deleted.
+
+Instead, visual audit previews were generated for manual verification.
+
+Initial inspection showed that large boxes can still represent valid no-vest annotations when the worker occupies a large portion of the image.
+
+---
+
+## 🧠 7. False-Positive Prevention Strategy
+
+A major focus of today's work was preventing the AI system from triggering alarms because of incorrect training annotations.
+
+The planned pipeline is:
+
+```text
+Dataset
+   ↓
+Annotation Validation
+   ↓
+Visual Audit
+   ↓
+Dataset Strengthening
+   ↓
+YOLO Training
+   ↓
+Validation
+   ↓
+Real Camera Testing
+   ↓
+False-Positive Testing
+   ↓
+Alarm Trigger
