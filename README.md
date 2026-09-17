@@ -478,7 +478,7 @@ A major focus of today's work was preventing the AI system from triggering alarm
 
 The planned pipeline is:
 
-```text
+
 Dataset
    ↓
 Annotation Validation
@@ -496,3 +496,186 @@ Real Camera Testing
 False-Positive Testing
    ↓
 Alarm Trigger
+
+
+
+
+
+Day 7 — Dataset Strengthening & Custom Zone Configuration
+📅 Progress Update
+
+Today, the Worker Safety Monitoring System was advanced from basic dataset preparation toward zone-aware safety monitoring.
+
+✅ Work Completed Today
+1. Added External Construction PPE Dataset
+
+Integrated the Ultralytics Construction-PPE dataset as an external dataset for strengthening the existing PPE detection dataset.
+
+The dataset contains classes such as:
+
+Helmet
+Gloves
+Vest
+Boots
+Goggles
+No Helmet
+No Gloves
+No Goggles
+No Boots
+Person
+None
+
+The external dataset was kept separate initially to avoid damaging the original dataset.
+
+2. External Dataset Conversion
+
+Created a conversion pipeline to map the external dataset classes into the project's existing 10-class structure.
+
+Project classes
+0  boots
+1  gloves
+2  goggles
+3  helmet
+4  no-boots
+5  no-gloves
+6  no-goggles
+7  no-helmet
+8  no-vest
+9  vest
+
+The conversion successfully processed the external annotations.
+
+Conversion result
+Label files processed : 1426
+Images selected       : 1414
+Images skipped        : 10
+Annotations converted : 8479
+
+The converted dataset was then prepared for integration.
+
+3. Dataset Strengthening
+
+Created a separate strengthening workspace:
+
+Downloads/
+└── strengthening/
+    ├── construction_ppe_external/
+    ├── audit/
+    ├── preview/
+    ├── selected/
+    └── combined_dataset/
+
+This approach keeps the original dataset protected while allowing additional verified data to be introduced.
+
+4. Visual Annotation Verification
+
+Created preview images from the converted dataset and manually inspected the annotations.
+
+The PPE bounding boxes were visually checked and confirmed to be usable for training.
+
+5. Weak-Class Audit
+
+Audited the important PPE classes, particularly:
+
+no-helmet
+no-gloves
+no-boots
+no-goggles
+goggles
+
+The purpose was to identify whether the additional dataset would improve the weaker classes and reduce false positives.
+
+6. Combined Dataset Created
+
+Successfully merged the original dataset with the verified converted external dataset.
+
+Final combined dataset:
+
+Train : 2260 images / 2260 labels
+Valid : 286 images / 286 labels
+Test  : 282 images / 282 labels
+
+Total : 2828 images
+Labels: 2828
+Annotations: 16958
+7. Dataset Validation
+
+The final combined dataset passed validation.
+
+✅ No missing image/label pairs
+✅ No malformed annotations
+✅ No invalid class IDs
+✅ No invalid YOLO coordinates
+
+This confirms that the combined dataset is structurally ready for the next training stage.
+
+8. Four-Zone Safety Architecture
+
+Configured the project's four required operational zones:
+
+Camera 1
+│
+├── Zone A — Construction
+├── Zone B — Chemical
+├── Zone C — Electrical
+└── Zone D — General
+
+Configured PPE requirements:
+
+Zone	Required PPE
+Construction	Helmet, Vest, Boots
+Chemical	Helmet, Vest, Gloves, Goggles, Boots
+Electrical	Helmet, Vest, Gloves, Boots
+General	Helmet, Vest, Boots
+
+These are the current prototype rules and should ultimately be aligned with the actual site's safety policy.
+
+9. Custom Polygon Zone Editor
+
+Implemented and tested a custom polygon-based zone editor.
+
+Created:
+
+zones/
+├── config.py
+├── zone_detector.py
+├── zone_editor.py
+├── zones.json
+└── __init__.py
+
+The editor allows the user to click points on the camera image and define custom zone boundaries.
+
+Successfully created and saved:
+
+Zone A - Construction
+Zone B - Chemical
+Zone C - Electrical
+Zone D - General
+
+The saved configuration is:
+
+zones/zones.json
+10. Custom Zone Detector Tested
+
+Verified that zone_detector.py successfully loads:
+
+Zone A - Construction: 4 points
+Zone B - Chemical: 4 points
+Zone C - Electrical: 4 points
+Zone D - General: 4 points
+
+The custom polygon system is therefore functioning.
+
+⚠️ Issue Identified Today
+
+When the first polygons were created, they overlapped heavily.
+
+This caused the dashboard to display zone names on top of each other.
+
+The problem was identified as a zone-boundary configuration issue, not a YOLO detection issue.
+
+A backup of the original zone configuration was created before correcting the boundaries.
+
+The next configuration should use non-overlapping polygons so that a worker is assigned to one zone at a time.
+
+
