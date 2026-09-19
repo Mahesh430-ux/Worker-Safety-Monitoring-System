@@ -679,3 +679,52 @@ A backup of the original zone configuration was created before correcting the bo
 The next configuration should use non-overlapping polygons so that a worker is assigned to one zone at a time.
 
 
+
+
+# Day 8 — Zone-Based Worker Safety Detection & Intelligent Alarm
+
+## Work Completed Today
+
+Today, the Worker Safety Monitoring System was successfully extended from basic PPE detection to a zone-aware intelligent safety monitoring system.
+
+### 1. Fixed Custom Zone Detection
+
+Implemented and tested a custom four-zone architecture:
+
+- Zone A — Construction
+- Zone B — Chemical
+- Zone C — Electrical
+- Zone D — General
+
+The system now correctly identifies the worker's zone using the worker bounding-box center.
+
+### 2. Fixed Zone Detector
+
+Updated:
+
+zones/zone_detector.py
+
+The zone detector now:
+
+- Loads zones from zones.json
+- Supports dictionary-based zone configuration
+- Detects whether a worker is inside a zone
+- Determines the worker's zone from the bounding-box center
+- Draws zone boundaries and labels on the camera frame
+
+### 3. Worker Detection
+
+Integrated a person detector with the safety detection pipeline.
+
+The system can now:
+
+- Detect workers
+- Assign Worker IDs
+- Generate worker bounding boxes
+- Determine the worker's current zone
+
+Example:-
+Worker 1
+Zone D - General
+
+
