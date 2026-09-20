@@ -728,3 +728,41 @@ Worker 1
 Zone D - General
 
 
+
+
+
+
+# Day 9 — Smooth Camera Optimization & Gmail Safety Alerts
+
+## Work Completed Today
+
+Today, the Worker Safety Monitoring System was improved in two major areas:
+
+1. Live camera performance optimization
+2. Gmail safety notification integration
+
+---
+
+## 1. Smooth Live Camera Optimization
+
+Previously, the camera was lagging because the AI detection pipeline was processing every camera frame.
+
+### Problem
+
+The AI processing time was approximately:
+
+- AI processing: ~340 ms per frame
+- Camera display: ~3–4 FPS
+
+This caused noticeable camera lag and delayed movement.
+
+Solution:- 
+Implemented frame-skipping based AI processing.
+
+Instead of running the AI model on every frame:-
+Camera Frame 1 → Display
+Camera Frame 2 → Display
+Camera Frame 3 → AI Detection
+Camera Frame 4 → Display
+Camera Frame 5 → Display
+Camera Frame 6 → AI Detection
