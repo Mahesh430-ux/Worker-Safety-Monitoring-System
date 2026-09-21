@@ -766,3 +766,31 @@ Camera Frame 3 → AI Detection
 Camera Frame 4 → Display
 Camera Frame 5 → Display
 Camera Frame 6 → AI Detection
+
+
+
+System
+📅 Day 9 Progress
+
+Today, I focused on improving the real-time performance of the AI-based Worker Safety Monitoring System and developing the alert notification pipeline.
+
+✅ Work Completed
+Optimized the real-time camera processing for smoother video performance.
+Implemented AI inference every 3 frames while displaying every camera frame.
+Improved camera responsiveness and reduced the visual lag caused by continuous AI inference.
+Tested the optimized camera with the YOLO-based safety detection system.
+Integrated the Intelligent Alarm concept for confirmed PPE violations.
+Implemented violation confirmation logic to reduce false alarms caused by temporary detection fluctuations.
+Added configurable alarm confirmation frames and cooldown logic.
+Integrated Gmail email notifications for safety violations.
+Successfully tested Gmail SMTP integration and confirmed that safety alerts can be sent successfully.
+Added notification handling for:
+Zone information
+Worker ID
+Missing PPE
+Violation details
+Started integration of SMS notifications.
+Tested Twilio SMS integration, but the trial account encountered restrictions.
+Investigated alternative notification services for future SMS/phone alerts.
+Kept sensitive credentials inside .env instead of committing them to GitHub.
+Continued organizing the project into separate modules for detection, zones, alarms, and notifications.
