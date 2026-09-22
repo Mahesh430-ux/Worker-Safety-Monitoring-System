@@ -794,3 +794,82 @@ Tested Twilio SMS integration, but the trial account encountered restrictions.
 Investigated alternative notification services for future SMS/phone alerts.
 Kept sensitive credentials inside .env instead of committing them to GitHub.
 Continued organizing the project into separate modules for detection, zones, alarms, and notifications.
+
+
+
+
+
+## Day 10 – Notification System & Database Integration
+
+Today, I completed the notification layer of the AI Worker Safety Monitoring System and started integrating MongoDB for centralized data storage.
+
+### ✅ Completed
+
+- Implemented Gmail safety violation notifications.
+- Successfully tested Gmail alert delivery.
+- Implemented Telegram Bot API notifications.
+- Successfully tested Telegram alerts on mobile.
+- Replaced the previous Twilio SMS approach with Telegram for the current prototype.
+- Integrated Gmail and Telegram into the centralized notification manager.
+- Added threaded notification execution to prevent blocking the main safety system.
+- Added proper notification success/failure reporting.
+- Continued development of the optimized smooth-camera pipeline.
+- Continued intelligent alarm development with violation confirmation logic.
+- Started MongoDB Atlas integration.
+- Installed and configured PyMongo.
+- Created MongoDB connection layer.
+- Configured MongoDB environment variables using `.env`.
+- Verified MongoDB Atlas DNS resolution.
+- Verified connectivity to MongoDB Atlas on port 27017.
+- Configured MongoDB Atlas IP access requirements.
+
+### 🏗️ Current Architecture
+
+Camera
+↓
+Person Detection
+↓
+Zone Detection
+↓
+PPE Detection
+↓
+Violation Confirmation
+↓
+Intelligent Alarm
+├── 🔊 Safety Siren
+├── 📧 Gmail Alert
+└── 📱 Telegram Alert
+
+MongoDB integration is currently being finalized for:
+
+- Violation records
+- Worker information
+- Zone information
+- Notification history
+- Evidence-image metadata
+- GridFS-based evidence storage
+
+### 🔜 Next Steps
+
+1. Complete MongoDB Atlas connection.
+2. Test MongoDB database operations.
+3. Implement GridFS.
+4. Upload and retrieve a test evidence image.
+5. Connect confirmed violations with MongoDB.
+6. Store violation metadata and evidence references.
+7. Build the dashboard database layer.
+8. Evaluate cloud storage strategy for the training dataset.
+
+### 🔐 Security
+
+Sensitive credentials are stored in `.env` and are not committed to GitHub.
+
+The project continues to follow a modular architecture separating:
+
+- AI detection
+- Zone management
+- Safety rules
+- Alarm management
+- Notifications
+- Database
+- Dashboard
