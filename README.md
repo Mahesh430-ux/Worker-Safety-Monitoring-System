@@ -873,3 +873,27 @@ The project continues to follow a modular architecture separating:
 - Notifications
 - Database
 - Dashboard
+
+
+
+
+
+Day 11 – PPE Dataset Strengthening & Multi-Zone Safety Detection
+
+Integrated the Ultralytics Construction-PPE dataset with the existing PPE dataset.
+Converted and validated external YOLO annotations.
+Created a combined PPE dataset containing 2,828 images and 16,958 annotations.
+Verified image-label pairs and YOLO annotation validity.
+Configured four safety zones:
+Zone A – Construction
+Zone B – Chemical
+Zone C – Electrical
+Zone D – General
+Implemented custom polygon-based zone detection.
+Improved worker-to-PPE association using bounding-box overlap and IoU.
+Implemented zone-specific PPE requirements.
+Tested the trained PPE model independently from the zone detection pipeline.
+Investigated false PPE detections using raw model output.
+Identified that current false positives originate from the trained PPE model and require further dataset/model investigation.
+
+Current Status: Multi-zone detection pipeline is functional, while PPE model accuracy and false-positive reduction are the next development task.
