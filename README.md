@@ -897,3 +897,17 @@ Investigated false PPE detections using raw model output.
 Identified that current false positives originate from the trained PPE model and require further dataset/model investigation.
 
 Current Status: Multi-zone detection pipeline is functional, while PPE model accuracy and false-positive reduction are the next development task.
+
+
+
+Day 12 :- PPE Detection Investigation & Model Validation
+
+Verified the trained YOLO model configuration.
+Investigated false PPE detections from best.pt.
+Tested the PPE model independently from the zone-processing pipeline.
+Identified false detections such as face → helmet and T-shirt → vest.
+Verified that the false detections originate from the trained PPE model rather than only the zone association logic.
+Inspected the model training configuration.
+Found that the train-5 model was trained for only 1 epoch.
+Located multiple data.yaml files and began identifying the exact dataset used for train-5.
+Paused retraining until the correct dataset and class mapping are verified.
