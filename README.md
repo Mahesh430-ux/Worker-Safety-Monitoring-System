@@ -911,3 +911,71 @@ Inspected the model training configuration.
 Found that the train-5 model was trained for only 1 epoch.
 Located multiple data.yaml files and began identifying the exact dataset used for train-5.
 Paused retraining until the correct dataset and class mapping are verified.
+
+
+
+
+Worker Safety Monitoring System
+Daily Development Update – 27 Sep 2026
+
+1. Investigated the live camera violation pipeline.
+
+2. Verified the trained YOLO safety model and its 10 PPE classes:
+   - boots
+   - gloves
+   - goggles
+   - helmet
+   - no-boots
+   - no-gloves
+   - no-goggles
+   - no-helmet
+   - no-vest
+   - vest
+
+3. Verified the YOLO model path:
+   runs/detect/train-5/weights/best.pt
+
+4. Investigated false PPE detections from the live camera,
+   including incorrect helmet/vest detections.
+
+5. Reviewed the camera detection pipeline:
+   Camera → YOLO → Detection Parsing → Zone Detection
+   → Violation Detection → Evidence → Alarm.
+
+6. Investigated the notification architecture.
+
+7. Confirmed that notification_manager.py contains
+   centralized Gmail and Telegram notification handling.
+
+8. Verified that send_alerts() is implemented and is used by
+   ViolationService.
+
+9. Reviewed services/violation_service.py.
+
+10. Confirmed ViolationService responsibilities:
+    - Save violation frame
+    - Upload evidence to MongoDB GridFS
+    - Store violation metadata in MongoDB
+    - Send Gmail notification
+    - Send Telegram notification
+
+11. Verified the notification function:
+    ViolationService.process_violation()
+    → send_alerts()
+    → Gmail + Telegram
+
+12. Found services/camera_event_service.py, which connects
+    camera events with ViolationService.
+
+13. Verified that camera_event_service.py calls:
+    ViolationService.process_violation()
+
+14. Tested/verified Gmail and Telegram notification functionality
+    separately.
+
+15. Investigated the existing live-camera integration without
+    making destructive changes.
+
+16. No GitHub push was performed because the live-camera
+    integration and false-detection improvements are not yet
+    finalized.
