@@ -979,3 +979,49 @@ Daily Development Update – 27 Sep 2026
 16. No GitHub push was performed because the live-camera
     integration and false-detection improvements are not yet
     finalized.
+
+
+
+# Sentiment Analysis REST API
+
+A RESTful Sentiment Analysis API built using Python, Flask,
+and a pretrained Transformer NLP model.
+
+## Project Overview
+
+This project provides an API that accepts text in JSON format
+and predicts whether the text is Positive or Negative.
+
+The API also returns the model confidence score.
+
+## Technologies Used
+
+- Python
+- Flask
+- Hugging Face Transformers
+- PyTorch
+- REST API
+- JSON
+
+## Features
+
+- RESTful API
+- GET health-check endpoint
+- POST sentiment prediction endpoint
+- Pretrained NLP model
+- Positive/Negative sentiment classification
+- Confidence score
+- JSON responses
+- Empty input validation
+- Invalid request handling
+
+## Project Structure
+
+```text
+sentiment-analysis-api/
+│
+├── app.py
+├── requirements.txt
+├── README.md
+├── .gitignore
+└── screenshots/
