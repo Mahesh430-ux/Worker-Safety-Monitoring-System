@@ -1017,7 +1017,7 @@ The API also returns the model confidence score.
 
 ## Project Structure
 
-```text
+
 sentiment-analysis-api/
 │
 ├── app.py
@@ -1025,3 +1025,35 @@ sentiment-analysis-api/
 ├── README.md
 ├── .gitignore
 └── screenshots/
+
+
+
+Day 12 :– Worker Safety Monitoring System Update
+
+## Today's Work
+
+Today I worked on improving the AI-based PPE detection and live camera monitoring system.
+
+### 1. YOLO Model Configuration
+- Verified the trained YOLO model.
+- Confirmed the model is loading successfully.
+- Verified the trained model path:
+  `C:\Users\mahes\runs\detect\train-5\weights\best.pt`
+- Verified the model contains 10 PPE-related classes:
+  - boots
+  - gloves
+  - goggles
+  - helmet
+  - no-boots
+  - no-gloves
+  - no-goggles
+  - no-helmet
+  - no-vest
+  - vest
+
+### 2. Detection Configuration
+Updated and tested the detection configuration:
+
+```text
+Confidence Threshold: 0.50
+Image Size: 416
