@@ -1054,6 +1054,23 @@ Today I worked on improving the AI-based PPE detection and live camera monitorin
 ### 2. Detection Configuration
 Updated and tested the detection configuration:
 
-```text
+
 Confidence Threshold: 0.50
 Image Size: 416
+
+
+ Day 12 :- 
+Worker Safety Monitoring System – Camera & Zone Detection Upgrade
+
+Upgraded camera processing to support 1920×1080 high-resolution input.
+Added scalable zone detection for different camera resolutions.
+Implemented 4 safety zones:
+Zone A – Construction
+Zone B – Chemical
+Zone C – Electrical
+Zone D – General
+Added worker tracking with unique Worker IDs.
+Added zone assignment based on worker position.
+Optimized camera display by resizing the 1080p frame for smoother visualization while keeping the original high-resolution frame for AI processing.
+Added batch zone detection support.
+Improved foundation for worker-specific PPE monitoring and safety violation detection.
