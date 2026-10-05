@@ -1093,3 +1093,26 @@ our project currently has these important pieces working:
 ⚠️ Final connection between the PPE engine and event service still needs to be completed tomorrow
 ⚠️ .env has an R2 parsing warning
 ⚠️ Cloudflare R2 integration isn't configured yet
+
+
+
+
+
+Phase 1 camera reliability and PPE detection improvements
+
+- Added camera health monitoring
+- Added black-screen detection
+- Added low-light detection
+- Added overexposure detection
+- Added blur detection
+- Added frozen-frame detection
+- Added camera health status handling
+- Paused PPE detection when camera is unreliable
+- Added class-specific PPE confidence thresholds
+- Added helmet detection confidence protection
+- Added helmet bounding-box geometry validation
+- Added filtered detection handling for batch inference
+- Improved SafetyDetector structure and readability
+
+The system now avoids running PPE alerts when the camera feed
+is unreliable and applies stricter filtering to helmet detections.
